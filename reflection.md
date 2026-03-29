@@ -1,6 +1,12 @@
 # PawPal+ Project Reflection
 
 ## 1. System Design
+**Core Actions**
+- Enter pet information and owner information
+- Modify and add tasks
+- Let users generate a schedule from those tasks
+
+
 
 **a. Initial design**
 
