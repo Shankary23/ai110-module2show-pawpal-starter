@@ -21,6 +21,7 @@
 
 - Did your design change during implementation?
     - Yes I changed the design during the implmenation to add some more relations.
+
 - If yes, describe at least one change and why you made it.
     - First linked the relation of owners to pets but also pets to owners. Next also tasks class linked tasks to a specific pet instead of owners only.
 
@@ -31,12 +32,15 @@
 **a. Constraints and priorities**
 
 - What constraints does your scheduler consider (for example: time, priority, preferences)?
+    - It considers time, the day, completion and priority. 
 - How did you decide which constraints mattered most?
-
+    - Time is the most important since we need to find a corresponding slot, and then priority because of the way the priority works we need to make sure that its the next thing that is considered.
 **b. Tradeoffs**
 
 - Describe one tradeoff your scheduler makes.
+    - One large tradeoff the scheduler makes is not being optimized. Its greedy so it will take the first task not the most optimal task.
 - Why is that tradeoff reasonable for this scenario?
+    - Its reasonable because it maintains the time priority and makes sure that the highest priority tasks are always scheduled.
 
 ---
 
