@@ -48,6 +48,16 @@ The following features were added to `pawpal_system.py` to make the scheduler mo
 
 ## Getting started
 
+## Testing PawPal
+To run test use this command: ``` python3 -m pytest  ``` 
+There are a lot of tests but they cover:
+    - Adding tasks and marking them as complete
+    - Testing reoccuring tasks and making sure that they function as expected
+    - Making sure high priority tasks are scheduled before low priority tasks and that task adding logic works as expected
+    - Ensuring the tasks are returned in time based order
+    - The filtering for pets and status both work
+    - The conflict detection works.
+
 ### Setup
 
 ```bash

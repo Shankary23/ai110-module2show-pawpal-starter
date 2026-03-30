@@ -67,16 +67,21 @@ if st.button("Add task"):
     if st.session_state.current_pet is None:
         st.warning("Set an owner and pet first.")
     else:
-        task = Task(
-            description=task_desc,
-            duration_minutes=int(duration),
-            priority=priority,
-            date=str(target_date),
-            frequency=frequency
-        )
-        st.session_state.current_pet.add_task(task)
-        st.session_state.tasks.append(task)
-        st.success(f"Added '{task_desc}' to {st.session_state.current_pet.get_name()}.")
+        existing = [t.description for t in st.session_state.current_pet.get_tasks()
+                    if t.date == str(target_date)]
+        if task_desc in existing:
+            st.warning(f"'{task_desc}' is already scheduled for {st.session_state.current_pet.get_name()} on {target_date}.")
+        else:
+            task = Task(
+                description=task_desc,
+                duration_minutes=int(duration),
+                priority=priority,
+                date=str(target_date),
+                frequency=frequency
+            )
+            st.session_state.current_pet.add_task(task)
+            st.session_state.tasks.append(task)
+            st.success(f"Added '{task_desc}' to {st.session_state.current_pet.get_name()}.")
 
 if st.session_state.tasks:
     st.write("Current tasks:")
@@ -90,6 +95,26 @@ if st.session_state.tasks:
     } for t in st.session_state.tasks])
 else:
     st.info("No tasks yet. Add one above.")
+
+st.divider()
+
+# --- Mark Task Complete ---
+st.subheader("Mark Task Complete")
+
+pending_tasks = [t for t in st.session_state.tasks if not t.completed]
+if pending_tasks:
+    task_to_complete = st.selectbox(
+        "Select a task to mark complete",
+        options=pending_tasks,
+        format_func=lambda t: f"{t.description} ({next((p.get_name() for p in st.session_state.owner.pets if t in p.get_tasks()), '')})"
+    )
+    if st.button("Mark complete"):
+        scheduler = Scheduler(owner=st.session_state.owner, target_date=str(target_date))
+        scheduler.mark_task_complete(task_to_complete.description)
+        st.success(f"'{task_to_complete.description}' marked complete. Next occurrence scheduled if recurring.")
+        st.rerun()
+else:
+    st.info("No pending tasks to complete.")
 
 st.divider()
 

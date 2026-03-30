@@ -56,13 +56,21 @@
 - Describe one moment where you did not accept an AI suggestion as-is.
 - How did you evaluate or verify what the AI suggested?
 
+
+
 ---
 
 ## 4. Testing and Verification
 
+**Core Behaviors** 
+- Prioirty based scheduling
+- Task completion and recurring tasks to create future occuerences
+- Conflict detection
+
 **a. What you tested**
 
 - What behaviors did you test?
+    - I tested 
 - Why were these tests important?
 
 **b. Confidence**
