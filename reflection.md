@@ -11,12 +11,18 @@
 **a. Initial design**
 
 - Briefly describe your initial UML design.
+    - For the  intial UML design it was simpler with having classes to cover different user inputs and potential actions.
+
 - What classes did you include, and what responsibilities did you assign to each?
+    - The classes I included was a owner class that holds the owners data, a pet class that holds the pets information. A task class that stores different information about the task, like detail and date. Also a scheduler class that ties the pets, task and owner classes together.
+
 
 **b. Design changes**
 
 - Did your design change during implementation?
+    - Yes I changed the design during the implmenation to add some more relations.
 - If yes, describe at least one change and why you made it.
+    - First linked the relation of owners to pets but also pets to owners. Next also tasks class linked tasks to a specific pet instead of owners only.
 
 ---
 
