@@ -70,13 +70,23 @@
 **a. What you tested**
 
 - What behaviors did you test?
-    - I tested 
+    - I tested:
+        - Adding tasks and checking them off
+        - Reoccuring tasks
+        - Scheduling conflicts and generating schedules properly
+        - Sorting
+        - Conflict detection
+        - Filtering
+
 - Why were these tests important?
+    - These tests were important because they covered actions a normal user would do in the app. We need to make sure all actions in the app work as we and users expect them to.  
 
 **b. Confidence**
 
 - How confident are you that your scheduler works correctly?
+    - I am mostly confident that the scheduler works correctly, there was a few bugs I tried to fix myself but I am confident it covers mostly everything.
 - What edge cases would you test next if you had more time?
+    - I would test some overlapping scenarios, example being like two tasks with the exact same priority and duration and determining which one it picks, it should pick based on fifo, but this isnt confirmed. Also did not check for the date rollover at the end of the month. 
 
 ---
 
@@ -85,11 +95,14 @@
 **a. What went well**
 
 - What part of this project are you most satisfied with?
+    - The whole process felt very smooth and rewarding. It was really enjoyable to see the features come to life and test them to make sure they worked as envisioned.
 
 **b. What you would improve**
 
 - If you had another iteration, what would you improve or redesign?
+    - If I could improve something it would be making the front end a bit more user friendly like adding the task completion next to the current task list and other front end stuff.
 
 **c. Key takeaway**
 
 - What is one important thing you learned about designing systems or working with AI on this project?
+    - I learned that AI is really good once it has a whole plan. Even if that means coming up with a plan using it, the context it gains makes the whole process much smoother.

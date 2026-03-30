@@ -46,6 +46,37 @@ The following features were added to `pawpal_system.py` to make the scheduler mo
 
 `Scheduler.mark_task_complete()` calls this automatically when a task is marked done, appending the new instance to the correct pet's task list so recurring care never falls off the schedule.
 
+## Features
+
+### Priority-Based Scheduling
+Tasks are sorted by priority (high → medium → low) and greedily added to the plan until the owner's available time budget is exhausted. High-priority tasks are always considered first, ensuring the most important care never gets dropped.
+
+### Time Budget Enforcement
+The scheduler tracks cumulative task duration and stops adding tasks once the owner's available minutes are used up. Tasks that individually fit but would exceed the budget are skipped.
+
+### Sorting by Time
+Pending tasks can be viewed in chronological order using `sort_by_time()`. Tasks use a zero-padded `"HH:MM"` time field, which sorts correctly as plain strings without any conversion.
+
+### Conflict Detection
+`detect_conflicts()` scans all tasks across all pets and flags any two tasks that share the same date and time slot. Conflicts are returned as warning strings so the owner can reschedule before the day starts.
+
+### Daily and Weekly Recurrence
+`Task.next_occurrence()` auto-generates the next instance of a recurring task using Python's `timedelta` — +1 day for daily, +7 days for weekly. One-time tasks return `None` and are not rescheduled.
+
+### Auto-Rescheduling on Completion
+When `mark_task_complete()` is called on a recurring task, the next occurrence is automatically created and added to the pet's task list so recurring care never falls off the schedule.
+
+### Filter by Status
+Tasks across all pets can be filtered to show only pending or only completed items, making it easy to review what still needs attention vs. what's already done.
+
+### Filter by Pet
+`filter_by_pet(pet_name)` returns all tasks for a specific pet using case-insensitive name matching, useful for reviewing one pet's full care list at a glance.
+
+### Multi-Pet Support
+An owner can have multiple pets, each with their own task list. The scheduler aggregates tasks across all pets when generating a plan or detecting conflicts.
+
+---
+
 ## Getting started
 
 ## Testing PawPal
@@ -57,6 +88,7 @@ There are a lot of tests but they cover:
     - Ensuring the tasks are returned in time based order
     - The filtering for pets and status both work
     - The conflict detection works.
+    Based on all these tests I would give it a 4 star confidence rating, it passed all tests but I am sure there could be some random edge cases.
 
 ### Setup
 
@@ -75,3 +107,9 @@ pip install -r requirements.txt
 5. Add tests to verify key behaviors.
 6. Connect your logic to the Streamlit UI in `app.py`.
 7. Refine UML so it matches what you actually built.
+
+---
+
+## Final App
+
+![PawPal+ final app](pawpalfinal.png)
